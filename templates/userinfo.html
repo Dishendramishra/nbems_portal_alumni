@@ -1,0 +1,35 @@
+<div id="htmx-placeholder" class="bg-white p-5 rounded-lg m-4 flex-grow shadow-xl flex justify-center">
+    <div>
+        <table id="user-info-table">
+            <!-- <thead></thead> -->
+            <tbody>
+                <tr class="even:bg-sky-100">
+                    <td class="p-2 border border-gray-200">Photo</td>
+                    <td class="p-2 border border-gray-200">
+                        {% if current_user.username %}
+                        <img class="mx-auto w-24" src="https://nbe.edu.in/empbook/{{current_user.photo}}"
+                            alt="user photo">
+                        {% else %}
+                        <img class="mx-auto w-24" src="static/blank_user.png" alt="user photo">
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr class="even:bg-sky-100">
+                    <td class="p-2 border border-gray-200">Employee Name</td>
+                    <td class="p-2 border border-gray-200">
+                        <p>{{current_user.username.title()}}</p>
+                    </td>
+                </tr>
+                <tr class="even:bg-sky-100">
+                    <td class="p-2 border border-gray-200">Email</td>
+                    <td class="p-2 border border-gray-200">
+                        <p>{{current_user.email.lower()}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    Swal.close();
+</script>

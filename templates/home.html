@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>एनबीईएमएस NBEMS</title>
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon" fetchpriority="high">
+    <link rel="preload" href="static/spinner.svg" as="image" fetchpriority="high">
+    <script src="static/js/tailwindcss.js"></script>
+    <script src="static/js/sweetalert.js"></script>
+</head>
+
+<body class="h-full">
+
+    <div class="flex flex-col h-full">
+        <!------------------------------------ Header ------------------------------------------------->
+        <div class="flex items-center px-1 py-2 text-white" style="background-color: #31577c;" id="header">
+            <div class="flex-none mx-2">
+                <img src="static/logo.png" class="size-12 md:size-20" alt="natboard logo">
+            </div>
+            <div class="grow">
+                <p class="text-xl hidden md:block">आयुर्विज्ञान में राष्ट्रीय परीक्षा बोर्ड</p>
+                <p class="text-lg hidden md:block"> (स्वास्थ्य एवं परिवार कल्याण
+                    मंत्रालय,
+                    भारत सरकार के अधीन एक स्वायत्त निकाय)</p>
+                <p class="text-sm md:text-xl">National Board of Examinations in Medical Sciences
+                </p>
+                <p class="text-lg hidden md:block"> (An Autonomous Body under
+                    Ministry
+                    of
+                    Health and Family Welfare, Government of India)</p>
+                <!-- <h6 style="margin-bottom:1px;padding:0px;font-weight: normal;">(आईएसओ 9001:2015 प्रमाणित संगठन An ISO 9001:2015 Certified Organisation)</h6> -->
+            </div>
+            <div class="flex-none mx-2">
+                <img src="static/amrit_mahotsav.png" class="w-16 md:w-24" alt="">
+            </div>
+        </div>
+        <!--------------------------------------------------------------------------------------------->
+
+        <!-- Content here -->
+        <div id="content" class="flex flex-col grow" style="background-color: #E3F3FA;">
+
+            <nav class="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 w-full">
+                <div class="px-3 py-3 lg:px-5 lg:pl-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-start rtl:justify-end">
+                            <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
+                                aria-controls="logo-sidebar" type="button"
+                                class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                                <span class="sr-only">Open sidebar</span>
+                                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd" fill-rule="evenodd"
+                                        d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+                                <img src="static/logo.png" class="h-8 me-3" alt="FlowBite Logo" />
+                                <span
+                                    class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Employee
+                                    Book</span>
+                            </a>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex items-center ms-3">
+                                <div>
+                                    <button type="button"
+                                        class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                        aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                                        <span class="sr-only">Open user menu</span>
+                                        {% if current_user.username %}
+                                        <img class="w-8 h-8 rounded-full"
+                                            src="https://nbe.edu.in/empbook/{{current_user.photo}}" alt="user photo">
+                                        {% else %}
+                                        <img class="w-8 h-8 rounded-full" src="static/blank_user.png" alt="user photo">
+                                        {% endif %}
+                                    </button>
+                                </div>
+                                <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                                    id="dropdown-user">
+                                    <div class="px-4 py-3" role="none">
+                                        <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                            {{current_user.username.title()}}
+                                        </p>
+                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                                            role="none">
+                                            {{current_user.email}}
+                                        </p>
+                                    </div>
+                                    <ul class="py-1" role="none">
+                                        <li>
+                                            <a href="/logout"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                role="menuitem">Sign out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="flex h-full">
+                <aside id="logo-sidebar"
+                    class="fixed sm:relative top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+                    aria-label="Sidebar">
+                    <div
+                        class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800 flex flex-col justify-between">
+                        <ul class="space-y-2 font-medium">
+                            <li>
+                                <a hx-post="/userinfo" hx-target="#htmx-placeholder" hx-swap="outerHTML"
+                                    hx-on::before-request="showalert()" hx-on::after-request="closealert()"
+                                    class="mt-2 bg-gray-200 flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#31577c] hover:text-white dark:hover:bg-gray-700 group hover:cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                    </svg>
+                                    <span class="ms-3">Home</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="space-y-2 font-medium">
+                            <li>
+                                <a hx-get="/logout" hx-target="body" hx-on::before-request="showalert()"
+                                    class="mt-2 bg-red-200 flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-red-600 hover:text-white dark:hover:bg-gray-700 group hover:cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
+                                    </svg>
+                                    <span class="ms-3">Sign Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <div id="htmx-placeholder" class="bg-white p-5 rounded-lg m-4 flex-grow shadow-xl flex justify-center"
+                    hx-post="/userinfo" hx-target="#htmx-placeholder" hx-swap="outerHTML" hx-trigger="load"
+                    hx-on::before-request="showalert()" hx-on::after-request="closealert()">
+                </div>
+            </div>
+
+
+            <!------------------------------------ Footer ------------------------------------------------->
+            <div class="flex justify-center items-center px-2 py-2 text-white" style="background-color: #31577c;">
+                <p class="text-sm md:text-base text-center">&copy; National Board of Examinations in Medical Sciences,
+                    New
+                    Delhi, <span id="year"></span>
+                </p>
+            </div>
+            <!--------------------------------------------------------------------------------------------->
+
+        </div>
+
+        <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+        <script src="static/js/flowbite.min.js"></script>
+</body>
+
+<script>
+    // if (typeof Swal !== 'undefined') {
+    //     Swal.close();
+    // }
+
+    function showalert() {
+        Swal.fire({
+            imageUrl: "static/spinner.svg",
+            heightAuto: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            width: "auto",
+        });
+    };
+
+    function closealert() {
+        Swal.close();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById("year").innerText = new Date().getFullYear();
+        showalert();
+    }, false);
+</script>
+
+</html>
