@@ -127,20 +127,6 @@ def login():
         email = request.form["email"]
         password = request.form["password"]
         password_hash = hashlib.sha256(password.encode()).hexdigest()
-        # password_hash = php2python_encry.encryption(password, "e")
-
-
-        # cursor = mysql.connection.cursor()
-        # query = f"SELECT pan, name, email, mobile from user where password = '{password_hash}' && email = '{email}';"
-        # cursor.execute("USE nbeedu_sulekha;")
-        # cursor.execute(query)
-        # result = cursor.fetchone()
-
-        # cursor.execute("USE nbeedu_empprofiledb;")
-        # cursor.execute(
-        #     f"SELECT emp_photo from emplogbook_tbl where emp_email='{email}';")
-        # photo = cursor.fetchone()
-        # cursor.close()
 
         result = list(mycoll.find({"email":email, "password": password_hash}))
         print(result)
@@ -154,7 +140,6 @@ def login():
 
         else:
             return "Bad Credientials!"
-
 
 @app.route('/home', methods=['GET', "POST"])
 @login_required
@@ -170,7 +155,9 @@ def userinfo():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    resp = Response()
+    resp.headers['HX-Redirect'] = '/login'
+    return resp
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=80)

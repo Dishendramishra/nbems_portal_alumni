@@ -113,7 +113,7 @@
                             <li>
                                 <a hx-post="/userinfo" hx-target="#htmx-placeholder" hx-swap="outerHTML"
                                     hx-on::before-request="showalert()" hx-on::after-request="closealert()"
-                                    class="mt-2 bg-gray-200 flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#31577c] hover:text-white dark:hover:bg-gray-700 group hover:cursor-pointer">
+                                    class="mt-2 bg-gray-200 flex items-center p-2 text-gray-900 rounded-lg dark:text-gray-800 hover:bg-[#31577c] hover:text-white dark:hover:bg-gray-600 group hover:cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -125,8 +125,8 @@
                         </ul>
                         <ul class="space-y-2 font-medium">
                             <li>
-                                <a hx-get="/logout" hx-target="body" hx-on::before-request="showalert()"
-                                    class="mt-2 bg-red-200 flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-red-600 hover:text-white dark:hover:bg-gray-700 group hover:cursor-pointer">
+                                <a hx-get="/logout" hx-on::before-request="showalert()"
+                                    class="mt-2 bg-red-200 flex items-center p-2 text-gray-900 rounded-lg dark:text-gray-800 hover:bg-red-600 hover:text-white dark:hover:bg-red-600 group hover:cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
